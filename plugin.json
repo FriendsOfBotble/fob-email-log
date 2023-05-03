@@ -1,0 +1,10 @@
+{
+    "id": "datlechin/email-log",
+    "name": "Email Log",
+    "namespace": "Datlechin\\EmailLog\\",
+    "provider": "Datlechin\\EmailLog\\Providers\\EmailLogServiceProvider",
+    "author": "Ngo Quoc Dat",
+    "url": "https://ngoquocdat.dev",
+    "version": "0.0.1",
+    "description": "Provides a log of all outgoing emails."
+}
