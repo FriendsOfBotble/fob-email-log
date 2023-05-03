@@ -1,6 +1,6 @@
 # Email Log for Botble CMS
 
-Email Log for Botble CMS allows you to log all emails sent from the system. You can view envelope, headers, and body of the email, as well as the response from the SMTP server.
+Email Log for Botble CMS allows you to log all emails sent from the system. You can view the email's envelope, headers, body of the email, and the SMTP server's response.
 
 ![Screenshot](art/screenshot.png)
 
@@ -13,7 +13,7 @@ Email Log for Botble CMS allows you to log all emails sent from the system. You 
 ### Install from source
 
 - Download the package from [Botble Marketplace](https://marketplace.botble.com/products/datlechin/email-log).
-- Extract package to your plugins folder (`platform/plugins`).
+- Extract the package to your plugins folder (`platform/plugins`).
 
 ### Usage
 
@@ -46,4 +46,4 @@ If you discover any security related issues, please email datlechin@gmail.com in
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
