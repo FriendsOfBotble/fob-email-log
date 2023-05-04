@@ -5,6 +5,6 @@
     "provider": "Datlechin\\EmailLog\\Providers\\EmailLogServiceProvider",
     "author": "Ngo Quoc Dat",
     "url": "https://ngoquocdat.dev",
-    "version": "0.0.2",
+    "version": "0.1.0",
     "description": "Provides a log of all outgoing emails."
 }
