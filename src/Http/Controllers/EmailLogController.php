@@ -7,7 +7,6 @@ namespace Datlechin\EmailLog\Http\Controllers;
 use Datlechin\EmailLog\Providers\EmailLogServiceProvider;
 use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Http\Responses\BaseHttpResponse;
-use Botble\Base\Traits\HasDeleteManyItemsTrait;
 use Symfony\Component\HttpFoundation\Response;
 use Datlechin\EmailLog\Tables\EmailLogTable;
 use Botble\Base\Events\DeletedContentEvent;
@@ -17,26 +16,12 @@ use Botble\Base\Facades\PageTitle;
 use Botble\Base\Facades\Assets;
 use Illuminate\Http\Request;
 use Exception;
-use Closure;
 
 class EmailLogController extends BaseController
 {
-    use HasDeleteManyItemsTrait;
-
-    public function __construct()
-    {
-        $this->middleware(function (Request $request, Closure $next) {
-            if (! request()->user()->hasPermission('email-logs.index')) {
-                abort(403);
-            }
-
-            return $next($request);
-        });
-    }
-
     public function index(EmailLogTable $emailLogTable): View|Response
     {
-        PageTitle::setTitle(__('Email Log'));
+        PageTitle::setTitle(trans('datlechin/email-log::email-log.name'));
 
         return $emailLogTable->renderTable();
     }
@@ -50,7 +35,7 @@ class EmailLogController extends BaseController
             'vendor/core/core/base/libraries/codemirror/lib/css.js',
         ]);
 
-        PageTitle::setTitle(__('Email Log'));
+        PageTitle::setTitle(trans('datlechin/email-log::email-log.viewing_email_log', ['name' => $emailLog->subject, 'id' => $emailLog->id]));
 
         return view('datlechin/email-log::email-logs.show', compact('emailLog'));
     }

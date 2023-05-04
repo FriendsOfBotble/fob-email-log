@@ -8,8 +8,13 @@ return [
         'flag' => 'email-logs.index',
     ],
     [
+        'name' => 'Show',
+        'flag' => 'email-logs.show',
+        'parent_flag' => 'email-logs.index',
+    ],
+    [
         'name' => 'Delete',
-        'flag' => 'email-logs.delete',
+        'flag' => 'email-logs.destroy',
         'parent_flag' => 'email-logs.index',
     ],
 ];

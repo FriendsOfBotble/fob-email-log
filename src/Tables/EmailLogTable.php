@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Datlechin\EmailLog\Tables;
 
+use Botble\Base\Facades\BaseHelper;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Contracts\Routing\UrlGenerator;
@@ -23,7 +24,7 @@ class EmailLogTable extends TableAbstract
     {
         parent::__construct($table, $urlGenerator);
 
-        if (! $this->request()->user()->hasPermission('email-logs.delete')) {
+        if (! $this->request()->user()->hasAnyPermission(['email-logs.show', 'email-logs.destroy'])) {
             $this->hasOperations = false;
         }
     }
@@ -36,7 +37,7 @@ class EmailLogTable extends TableAbstract
                 return $this->getCheckbox($item->id);
             })
             ->editColumn('created_at', function (EmailLog $item) {
-                return $item->created_at;
+                return BaseHelper::formatDateTime($item->created_at);
             })
             ->editColumn('from', function (EmailLog $item) {
                 return str_replace('<', '&lt;', $item->from);
@@ -80,20 +81,20 @@ class EmailLogTable extends TableAbstract
     {
         return [
             'id' => [
-                'title' => __('ID'),
+                'title' => trans('core/base::tables.id'),
                 'width' => '20px',
             ],
             'from' => [
-                'title' => __('From'),
+                'title' => trans('datlechin/email-log::email-log.from'),
             ],
             'to' => [
-                'title' => __('To'),
+                'title' => trans('datlechin/email-log::email-log.to'),
             ],
             'subject' => [
-                'title' => __('Subject'),
+                'title' => trans('datlechin/email-log::email-log.subject'),
             ],
             'created_at' => [
-                'title' => __('Created at'),
+                'title' => trans('core/base::tables.created_at'),
                 'width' => '100px',
             ],
         ];
