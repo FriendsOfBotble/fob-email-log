@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Datlechin\EmailLog\Models;
 
-use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Database\Eloquent\MassPrunable;
 use Botble\Base\Models\BaseQueryBuilder;
 use Botble\Base\Models\BaseModel;
 use Carbon\Carbon;
 
 class EmailLog extends BaseModel
 {
-    use Prunable;
+    use MassPrunable;
+
+    protected $table = 'email_logs';
 
     protected $fillable = [
         'from',
@@ -30,7 +32,7 @@ class EmailLog extends BaseModel
         return static::where(
             'created_at',
             '<=',
-            Carbon::now()->subDays(setting('keep_email_log_for_days', 30))
+            Carbon::now()->subDays((int) setting('keep_email_log_for_days', 30))
         );
     }
 }

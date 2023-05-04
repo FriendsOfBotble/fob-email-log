@@ -20,6 +20,7 @@ class EmailLogServiceProvider extends ServiceProvider
         $this
             ->setNamespace('datlechin/email-log')
             ->loadAndPublishConfigurations(['permissions'])
+            ->loadAndPublishTranslations()
             ->loadAndPublishViews()
             ->loadRoutes()
             ->loadMigrations();

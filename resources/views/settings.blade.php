@@ -1,12 +1,12 @@
 <x-core-setting::section
-    :title="__('Email Log')"
-    :description="__('Configure the email log')"
+    :title="trans('datlechin/email-log::email-log.settings.title')"
+    :description="trans('datlechin/email-log::email-log.settings.description')"
 >
     <x-core-setting::text-input
         name="keep_email_log_for_days"
         type="number"
-        :label="__('Keep email log for days')"
+        :label="trans('datlechin/email-log::email-log.settings.keep_log_for_days')"
         :value="setting('keep_email_log_for_days', 30)"
-        :helper-text="__('You need to set up the cron job to delete the email log. See the documentation for more information.')"
+        :helper-text="trans('datlechin/email-log::email-log.settings.keep_log_for_days_description')"
     />
 </x-core-setting::section>
