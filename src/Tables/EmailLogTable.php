@@ -47,7 +47,7 @@ class EmailLogTable extends TableAbstract
                     edit: null,
                     delete: 'email-logs.destroy',
                     item: $item,
-                    extra: view('datlechin/email-log::partials.show-button', compact('item'))->render()
+                    extra: view('plugins/email-log::partials.show-button', compact('item'))->render()
                 );
             });
 
@@ -85,13 +85,13 @@ class EmailLogTable extends TableAbstract
                 'width' => '20px',
             ],
             'from' => [
-                'title' => trans('datlechin/email-log::email-log.from'),
+                'title' => trans('plugins/email-log::email-log.from'),
             ],
             'to' => [
-                'title' => trans('datlechin/email-log::email-log.to'),
+                'title' => trans('plugins/email-log::email-log.to'),
             ],
             'subject' => [
-                'title' => trans('datlechin/email-log::email-log.subject'),
+                'title' => trans('plugins/email-log::email-log.subject'),
             ],
             'created_at' => [
                 'title' => trans('core/base::tables.created_at'),
