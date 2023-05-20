@@ -18,7 +18,7 @@ class EmailLogServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this
-            ->setNamespace('datlechin/email-log')
+            ->setNamespace('plugins/email-log')
             ->loadAndPublishConfigurations(['permissions'])
             ->loadAndPublishTranslations()
             ->loadAndPublishViews()
@@ -40,7 +40,7 @@ class EmailLogServiceProvider extends ServiceProvider
         });
 
         add_filter(BASE_FILTER_AFTER_SETTING_CONTENT, function (string|null $data = null): string {
-            return $data . view('datlechin/email-log::settings')->render();
+            return $data . view('plugins/email-log::settings')->render();
         }, 999);
     }
 }

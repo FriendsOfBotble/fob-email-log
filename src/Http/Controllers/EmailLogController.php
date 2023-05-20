@@ -21,7 +21,7 @@ class EmailLogController extends BaseController
 {
     public function index(EmailLogTable $emailLogTable): View|Response
     {
-        PageTitle::setTitle(trans('datlechin/email-log::email-log.name'));
+        PageTitle::setTitle(trans('plugins/email-log::email-log.name'));
 
         return $emailLogTable->renderTable();
     }
@@ -35,9 +35,9 @@ class EmailLogController extends BaseController
             'vendor/core/core/base/libraries/codemirror/lib/css.js',
         ]);
 
-        PageTitle::setTitle(trans('datlechin/email-log::email-log.viewing_email_log', ['name' => $emailLog->subject, 'id' => $emailLog->id]));
+        PageTitle::setTitle(trans('plugins/email-log::email-log.viewing_email_log', ['name' => $emailLog->subject, 'id' => $emailLog->id]));
 
-        return view('datlechin/email-log::email-logs.show', compact('emailLog'));
+        return view('plugins/email-log::email-logs.show', compact('emailLog'));
     }
 
     public function destroy(EmailLog $emailLog, Request $request, BaseHttpResponse $response): BaseHttpResponse
