@@ -28,7 +28,7 @@ You can customize how many days you want to keep the email log by updating the `
 Then you can run the command to delete old email logs:
 
 ```bash
-php artisan model:prune --model="Datlechin\EmailLog\Models\EmailLog"
+php artisan model:prune --model="FriendsOfBotble\EmailLog\Models\EmailLog"
 ```
 
 ## Contributing

@@ -2,101 +2,53 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\EmailLog\Tables;
+namespace FriendsOfBotble\EmailLog\Tables;
 
 use Botble\Base\Facades\BaseHelper;
-use Illuminate\Database\Query\Builder as QueryBuilder;
-use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Contracts\Routing\UrlGenerator;
 use Botble\Table\Abstracts\TableAbstract;
+use Botble\Table\Actions\Action;
+use Botble\Table\Actions\DeleteAction;
+use Botble\Table\BulkActions\DeleteBulkAction;
+use Botble\Table\Columns\Column;
+use Botble\Table\Columns\CreatedAtColumn;
+use Botble\Table\Columns\FormattedColumn;
+use Botble\Table\Columns\IdColumn;
+use FriendsOfBotble\EmailLog\Models\EmailLog;
 use Illuminate\Database\Eloquent\Builder;
-use Datlechin\EmailLog\Models\EmailLog;
-use Illuminate\Http\JsonResponse;
-use Yajra\DataTables\DataTables;
 
 class EmailLogTable extends TableAbstract
 {
-    protected $hasActions = true;
-
-    protected $hasFilter = true;
-
-    public function __construct(DataTables $table, UrlGenerator $urlGenerator)
+    public function setup(): void
     {
-        parent::__construct($table, $urlGenerator);
-
-        if (! $this->request()->user()->hasAnyPermission(['email-logs.show', 'email-logs.destroy'])) {
-            $this->hasOperations = false;
-        }
-    }
-
-    public function ajax(): JsonResponse
-    {
-        $data = $this->table
-            ->eloquent($this->query())
-            ->editColumn('checkbox', function (EmailLog $item) {
-                return $this->getCheckbox($item->id);
-            })
-            ->editColumn('created_at', function (EmailLog $item) {
-                return BaseHelper::formatDateTime($item->created_at);
-            })
-            ->editColumn('from', function (EmailLog $item) {
-                return str_replace('<', '&lt;', $item->from);
-            })
-            ->addColumn('operations', function (EmailLog $item) {
-                return $this->getOperations(
-                    edit: null,
-                    delete: 'email-logs.destroy',
-                    item: $item,
-                    extra: view('plugins/email-log::partials.show-button', compact('item'))->render()
-                );
-            });
-
-        return $this->toJson($data);
-    }
-
-    public function bulkActions(): array
-    {
-        return $this->addDeleteAction(
-            route('email-logs.deletes'),
-            'email-logs.delete',
-        );
-    }
-
-    public function query(): Relation|Builder|QueryBuilder
-    {
-        $query = EmailLog::query()
-            ->select([
+        $this
+            ->model(EmailLog::class)
+            ->addActions([
+                Action::make('view')
+                    ->route('email-logs.edit')
+                    ->label(trans('core/base::tables.view'))
+                    ->icon('ti ti-eye'),
+                DeleteAction::make()->route('email-logs.destroy'),
+            ])
+            ->queryUsing(fn (Builder $query) => $query->select([
                 'id',
                 'from',
                 'to',
                 'subject',
                 'created_at',
+            ])->latest())
+            ->addColumns([
+                IdColumn::make(),
+                Column::make('subject')->label(trans('plugins/email-log::email-log.subject')),
+                FormattedColumn::make('from')
+                    ->label(trans('plugins/email-log::email-log.from'))
+                    ->getValueUsing(function (FormattedColumn $column) {
+                        $emailLog = $column->getItem();
+
+                        return str_replace('<', '&lt;', $emailLog->from);
+                    }),
+                Column::make('to')->label(trans('plugins/email-log::email-log.to')),
+                CreatedAtColumn::make()->dateFormat(BaseHelper::getDateTimeFormat()),
             ])
-            ->latest();
-
-        return $this->applyScopes($query);
-    }
-
-    public function columns(): array
-    {
-        return [
-            'id' => [
-                'title' => trans('core/base::tables.id'),
-                'width' => '20px',
-            ],
-            'from' => [
-                'title' => trans('plugins/email-log::email-log.from'),
-            ],
-            'to' => [
-                'title' => trans('plugins/email-log::email-log.to'),
-            ],
-            'subject' => [
-                'title' => trans('plugins/email-log::email-log.subject'),
-            ],
-            'created_at' => [
-                'title' => trans('core/base::tables.created_at'),
-                'width' => '100px',
-            ],
-        ];
+            ->addBulkAction(DeleteBulkAction::make());
     }
 }

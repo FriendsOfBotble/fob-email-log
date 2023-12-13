@@ -1,10 +1,10 @@
 {
-    "id": "datlechin/email-log",
+    "id": "friendsofbotble/email-log",
     "name": "Email Log",
-    "namespace": "Datlechin\\EmailLog\\",
-    "provider": "Datlechin\\EmailLog\\Providers\\EmailLogServiceProvider",
-    "author": "Ngo Quoc Dat",
+    "namespace": "FriendsOfBotble\\EmailLog\\",
+    "provider": "FriendsOfBotble\\EmailLog\\Providers\\EmailLogServiceProvider",
+    "author": "Friends Of Botble",
     "url": "https://ngoquocdat.dev",
-    "version": "0.1.2",
+    "version": "1.0.0",
     "description": "Provides a log of all outgoing emails."
 }

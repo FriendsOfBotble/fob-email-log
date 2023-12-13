@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\EmailLog;
+namespace FriendsOfBotble;
 
 use Botble\PluginManagement\Abstracts\PluginOperationAbstract;
 use Illuminate\Support\Facades\Schema;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\EmailLog\Models;
+namespace FriendsOfBotble\EmailLog\Models;
 
-use Illuminate\Database\Eloquent\MassPrunable;
-use Botble\Base\Models\BaseQueryBuilder;
 use Botble\Base\Models\BaseModel;
+use Botble\Base\Models\BaseQueryBuilder;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\MassPrunable;
 
 class EmailLog extends BaseModel
 {

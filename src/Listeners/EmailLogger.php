@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\EmailLog\Listeners;
+namespace FriendsOfBotble\EmailLog\Listeners;
 
-use Datlechin\EmailLog\Models\EmailLog;
+use Exception;
+use FriendsOfBotble\EmailLog\Models\EmailLog;
 use Illuminate\Mail\Events\MessageSent;
 use Symfony\Component\Mime\Address;
-use Exception;
 
 class EmailLogger
 {

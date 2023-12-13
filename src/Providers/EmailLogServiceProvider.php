@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\EmailLog\Providers;
+namespace FriendsOfBotble\EmailLog\Providers;
 
-use Botble\Base\Traits\LoadAndPublishDataTrait;
-use Illuminate\Routing\Events\RouteMatched;
-use Illuminate\Support\ServiceProvider;
 use Botble\Base\Facades\DashboardMenu;
+use Botble\Base\Forms\FieldOptions\NumberFieldOption;
+use Botble\Base\Forms\Fields\NumberField;
+use Botble\Base\Traits\LoadAndPublishDataTrait;
+use Botble\Setting\Forms\GeneralSettingForm;
+use Illuminate\Support\ServiceProvider;
 
 class EmailLogServiceProvider extends ServiceProvider
 {
@@ -27,20 +29,28 @@ class EmailLogServiceProvider extends ServiceProvider
 
         $this->app->register(EventServiceProvider::class);
 
-        $this->app['events']->listen(RouteMatched::class, function () {
+        DashboardMenu::default()->beforeRetrieving(function () {
             DashboardMenu::registerItem([
                 'id' => 'email-log',
                 'priority' => 5,
                 'parent_id' => null,
                 'name' => __('Email Logs'),
-                'icon' => 'fa fa-envelope',
+                'icon' => 'ti ti-mail-opened',
                 'url' => route('email-logs.index'),
                 'permissions' => ['email-logs.index'],
             ]);
         });
 
-        add_filter(BASE_FILTER_AFTER_SETTING_CONTENT, function (string|null $data = null): string {
-            return $data . view('plugins/email-log::settings')->render();
-        }, 999);
+        GeneralSettingForm::extend(function (GeneralSettingForm $form) {
+            $form->add(
+                'keep_email_log_for_days',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/email-log::email-log.settings.keep_log_for_days'))
+                    ->value((string) setting('keep_email_log_for_days', 30))
+                    ->helperText(trans('plugins/email-log::email-log.settings.keep_log_for_days_description'))
+                    ->toArray()
+            );
+        });
     }
 }
