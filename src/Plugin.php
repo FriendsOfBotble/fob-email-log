@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FriendsOfBotble;
+namespace FriendsOfBotble\EmailLog;
 
 use Botble\PluginManagement\Abstracts\PluginOperationAbstract;
 use Illuminate\Support\Facades\Schema;

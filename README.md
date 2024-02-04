@@ -2,7 +2,7 @@
 
 Email Log for Botble CMS allows you to log all emails sent from the system. You can view the email's envelope, headers, body of the email, and the SMTP server's response.
 
-![Screenshot](art/screenshot.png)
+![Screenshot](https://github.com/FriendsOfBotble/email-log/assets/114894084/bb823256-9859-4550-9efa-cb1d0f1360f8)
 
 ## Installation
 
@@ -22,8 +22,6 @@ Go to **Admin Panel** -> **Plugins** -> **Email Log** and press **Activate** but
 All emails sent from the system will be logged automatically, you can view the log by clicking on the **Email Logs** menu item.
 
 You can customize how many days you want to keep the email log by updating the `Keep email log for days` setting in **General Settings**.
-
-![Admin settings](art/settings.png)
 
 Then you can run the command to delete old email logs:
 
