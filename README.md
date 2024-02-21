@@ -12,7 +12,7 @@ Email Log for Botble CMS allows you to log all emails sent from the system. You 
 
 ### Install from source
 
-- Download the package from [Botble Marketplace](https://marketplace.botble.com/products/datlechin/email-log).
+- Download the package from [Botble Marketplace](https://marketplace.botble.com/products/friendsofbotble/email-log).
 - Extract the package to your plugins folder (`platform/plugins`).
 
 ### Usage
