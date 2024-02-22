@@ -20,7 +20,7 @@ class EmailLogServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this
-            ->setNamespace('plugins/email-log')
+            ->setNamespace('plugins/fob-email-log')
             ->loadAndPublishConfigurations(['permissions'])
             ->loadAndPublishTranslations()
             ->loadAndPublishViews()
@@ -46,9 +46,9 @@ class EmailLogServiceProvider extends ServiceProvider
                 'keep_email_log_for_days',
                 NumberField::class,
                 NumberFieldOption::make()
-                    ->label(trans('plugins/email-log::email-log.settings.keep_log_for_days'))
+                    ->label(trans('plugins/fob-email-log::email-log.settings.keep_log_for_days'))
                     ->value((string) setting('keep_email_log_for_days', 30))
-                    ->helperText(trans('plugins/email-log::email-log.settings.keep_log_for_days_description'))
+                    ->helperText(trans('plugins/fob-email-log::email-log.settings.keep_log_for_days_description'))
                     ->toArray()
             );
         });

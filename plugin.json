@@ -1,10 +1,11 @@
 {
-    "id": "friendsofbotble/email-log",
+    "id": "friendsofbotble/fob-email-log",
     "name": "Email Log",
     "namespace": "FriendsOfBotble\\EmailLog\\",
     "provider": "FriendsOfBotble\\EmailLog\\Providers\\EmailLogServiceProvider",
     "author": "Friends Of Botble",
-    "url": "https://ngoquocdat.dev",
-    "version": "1.0.0",
-    "description": "Provides a log of all outgoing emails."
+    "url": "https://friendsofbotble.com",
+    "version": "1.0.1",
+    "description": "Provides a log of all outgoing emails.",
+    "minimum_core_version": "7.0.0"
 }
