@@ -20,25 +20,25 @@ class EmailLogController extends BaseController
 {
     public function index(EmailLogTable $emailLogTable): View|Response
     {
-        $this->pageTitle(trans('plugins/email-log::email-log.name'));
+        $this->pageTitle(trans('plugins/fob-email-log::email-log.name'));
 
         return $emailLogTable->renderTable();
     }
 
     public function edit(EmailLog $emailLog): View
     {
-        $this->pageTitle(trans('plugins/email-log::email-log.viewing_email_log', ['name' => $emailLog->subject, 'id' => $emailLog->id]));
+        $this->pageTitle(trans('plugins/fob-email-log::email-log.viewing_email_log', ['name' => $emailLog->subject, 'id' => $emailLog->id]));
 
         $tabs = [
-            'html_body' => trans('plugins/email-log::email-log.html_body'),
-            'text_body' => trans('plugins/email-log::email-log.text_body'),
-            'raw_body' => trans('plugins/email-log::email-log.raw_body'),
-            'debug_info' => trans('plugins/email-log::email-log.debug_info'),
+            'html_body' => trans('plugins/fob-email-log::email-log.html_body'),
+            'text_body' => trans('plugins/fob-email-log::email-log.text_body'),
+            'raw_body' => trans('plugins/fob-email-log::email-log.raw_body'),
+            'debug_info' => trans('plugins/fob-email-log::email-log.debug_info'),
         ];
 
         $form = EmailLogForm::createFromModel($emailLog)->renderForm();
 
-        return view('plugins/email-log::email-logs.show', compact('emailLog', 'tabs', 'form'));
+        return view('plugins/fob-email-log::email-logs.show', compact('emailLog', 'tabs', 'form'));
     }
 
     public function destroy(EmailLog $emailLog, Request $request): BaseHttpResponse

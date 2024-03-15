@@ -38,15 +38,15 @@ class EmailLogTable extends TableAbstract
             ])->latest())
             ->addColumns([
                 IdColumn::make(),
-                Column::make('subject')->label(trans('plugins/email-log::email-log.subject')),
+                Column::make('subject')->label(trans('plugins/fob-email-log::email-log.subject')),
                 FormattedColumn::make('from')
-                    ->label(trans('plugins/email-log::email-log.from'))
+                    ->label(trans('plugins/fob-email-log::email-log.from'))
                     ->getValueUsing(function (FormattedColumn $column) {
                         $emailLog = $column->getItem();
 
                         return str_replace('<', '&lt;', $emailLog->from);
                     }),
-                Column::make('to')->label(trans('plugins/email-log::email-log.to')),
+                Column::make('to')->label(trans('plugins/fob-email-log::email-log.to')),
                 CreatedAtColumn::make()->dateFormat(BaseHelper::getDateTimeFormat()),
             ])
             ->addBulkAction(DeleteBulkAction::make());

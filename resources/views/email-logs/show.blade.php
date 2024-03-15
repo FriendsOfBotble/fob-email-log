@@ -4,7 +4,7 @@
     <x-core::card>
         <x-core::card.header>
             <x-core::card.title>
-                {{ trans('plugins/email-log::email-log.envelope') }}
+                {{ trans('plugins/fob-email-log::email-log.envelope') }}
             </x-core::card.title>
         </x-core::card.header>
 
