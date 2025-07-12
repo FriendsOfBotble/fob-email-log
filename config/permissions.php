@@ -9,7 +9,7 @@ return [
     ],
     [
         'name' => 'Show',
-        'flag' => 'email-logs.show',
+        'flag' => 'email-logs.edit',
         'parent_flag' => 'email-logs.index',
     ],
     [
